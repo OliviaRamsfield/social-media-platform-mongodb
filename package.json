@@ -1,0 +1,27 @@
+{
+  "name": "social-platform-mongodb",
+  "version": "1.0.0",
+  "description": "## Purpose",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OliviaRamsfield/social-media-platform-mongodb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OliviaRamsfield/social-media-platform-mongodb/issues"
+  },
+  "homepage": "https://github.com/OliviaRamsfield/social-media-platform-mongodb#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongo": "^0.1.0",
+    "mongoose": "^6.6.1",
+    "node": "^18.9.1"
+  }
+}

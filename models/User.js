@@ -1,17 +1,29 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
+
+const validateEmail = (email) => {
+    const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email);
+}
+
 const UserSchema = new Schema(
     {
         username: {
             type: String,
             required: true,
-            //TODO: unique and trimmed
+            unique: true,
+            trim: true
         },
         email: {
             type: String,
             required: true,
-            //TODO: unique and must match valid email address
+            unique: true,
+            validate: [validateEmail, "Please fill in a valid email address"],
+            match: [
+                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                "Please fill in a valid email address",
+            ]
         },
         thoughts: [
             {
@@ -21,6 +33,10 @@ const UserSchema = new Schema(
         ],
         friends: [
             //TODO: array of _id values ref User model (self-ref)
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
         ]
     },
     {
@@ -32,6 +48,11 @@ const UserSchema = new Schema(
 );
 
 //TODO: get total count of user's friends
+UserSchema.virtual('friendCount').get(function() {
+    return this.friends.reduce(
+        (total, friends) => total + this.friends.length +1, 0
+    );
+});
 
 const User = model('User', UserSchema);
 

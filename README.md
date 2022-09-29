@@ -2,11 +2,7 @@
 
 ## Purpose
 
-
-
-## Screenshot
-
-
+This application allows users to create thoughts, add friends and react to others' posts. The goal is to help users stay virtually connected.
 
 ## Built With
 
